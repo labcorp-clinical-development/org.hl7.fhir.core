@@ -1903,7 +1903,8 @@ public class ProfileUtilities {
     if (contextPath == null)
       return pathSimple;
 //    String ptail = pathSimple.substring(contextPath.length() + 1);
-    if (redirector != null && redirector.size() > 0) {
+    String[] pathSimpleSplit = pathSimple.split("\\."); // temp fix for extensions off of Composition.section.section that causes recursion -> out of memory error
+    if (redirector != null && redirector.size() > 0 && !pathSimpleSplit[0].equals("Extension")) { // temp fix
       String ptail = null;
       if (contextPath.length() >= pathSimple.length()) {
         ptail = pathSimple.substring(pathSimple.indexOf(".")+1);
