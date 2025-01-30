@@ -172,6 +172,10 @@ public class ProfilePathProcessor {
       // get the current focus of the base, and decide what to do
       ElementDefinition currentBase = cursors.base.getElement().get(cursors.baseCursor);
       String currentBasePath = profileUtilities.fixedPathSource(getContextPathSource(), currentBase.getPath(), getRedirector());
+      if (currentBase.hasPath() && currentBase.getPath().equals("Composition.section.extension")) {
+        currentBase.setSlicing(null);
+      }
+
       debugProcessPathsIteration(cursors, currentBasePath);
       checkDiffAssignedAndCursor(cursors);
       List<ElementDefinition> diffMatches = profileUtilities.getDiffMatches(getDifferential(), currentBasePath, cursors.diffCursor, getDiffLimit(), getProfileName()); // get a list of matching elements in scope
